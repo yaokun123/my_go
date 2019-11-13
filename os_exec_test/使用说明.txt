@@ -1,0 +1,53 @@
+使用：
+import "os/exec"
+
+exec包执行外部命令，它将os.StartProcess进行包装使得它更容易映射到stdin和stdout，并且利用pipe连接i/o
+
+1、LookPath(file string) (string, error)
+在环境变量中查找可执行二进制文件，如果file中包含一个斜杠，则直接根据绝对路径或者相对本目录的相对路径去查找
+
+
+2、Command(name string, arg ...string) *Cmd
+command返回cmd结构来执行带有相关参数的命令，它仅仅设定cmd结构中的Path和Args参数，
+如果name参数中不包含路径分隔符，command使用LookPath来解决路径问题，否则的话就直接使用name
+Args直接跟在command命令之后，所以在Args中不许要添加命令
+
+
+3、(c *Cmd) CombinedOutput() ([]byte, error)
+运行命令，并返回标准输出和标准错误
+
+
+4、(c *Cmd) Output() ([]byte, error)
+运行命令并返回其标准输出,不包含错误信息
+
+
+5、(c *Cmd) Run() error
+这个函数主要是执行*Cmd中的命令，并且会等待命令执行完成，如果命令执行不成功，则返回错误信息
+
+
+6、(c *Cmd) Start() error
+这个函数主要是执行*Cmd中的命令，只是让命令开始执行，并不会等待命令执行完。
+这点和Run命令有区别．然后使用Wait方法等待命令执行完毕并且释放响应的资源
+注：一个command只能使用Start()或者Run()中的一个启动命令，不能两个同时使用
+
+
+7、(c *Cmd) Wait() error
+这个函数主要是等待*Cmd中的已开始执行的命令执行完成，配合Start使用
+
+
+8、(c *Cmd) StderrPipe() (io.ReadCloser, error)
+StderrPipe返回一个pipe，这个管道连接到command的标准错误，当command命令退出时，命令结束时，管道会自动关闭
+这里记得要保证在cmd命令结束前来读取内容，不然会读不到（一般结合Start与Wait来保证）
+
+
+9、(c *Cmd) StdinPipe() (io.WriteCloser, error)
+StdinPipe返回一个连接到command标准输入的管道pipe
+
+
+10、(c *Cmd) StdoutPipe() (io.ReadCloser, error)
+这个函数主要是用于连接到命令启动时标准输出的管道，命令结束时，管道会自动关闭
+
+
+11、CommandContext(ctx context.Context, name string, arg ...string) *Cmd
+类似于Command，但是多了一个Context
+//如果命令没有完成，但是context完成了，则可以终止命令的继续执行
