@@ -9,10 +9,36 @@ import (
 	"fmt"
 	"math"
 	"strconv"
+	"os/exec"
+	"context"
+	"time"
 )
 
 func main()  {
 	path := "/tmp/yuan.png"
+
+	var i int
+	for{
+		angle := AngleToFloat(i)
+		AngleImg(path,angle)
+		i += 20
+		if i>=360{
+			break
+		}else {
+			execCommond()
+		}
+	}
+}
+
+func execCommond()  {
+	ctx,cancel := context.WithTimeout(context.Background(),2*time.Second)
+	defer cancel()
+	cmd := exec.CommandContext(ctx,"/Applications/Preview.app/Contents/MacOS/Preview","/tmp/123.png")
+	cmd.Run()
+}
+
+
+func AngleImg(path string,angle float64)  {
 	src,err := LoadImage(path)
 	if err != nil{
 		log.Fatal(err)
@@ -20,7 +46,6 @@ func main()  {
 
 	dst := image.NewRGBA(image.Rect(0,0,250,400))
 
-	angle := AngleToFloat(180)
 	err = graphics.Rotate(dst,src,&graphics.RotateOptions{angle})
 	if err != nil{
 		log.Fatal(err)
@@ -29,7 +54,6 @@ func main()  {
 	//需要保存的文件
 	imgcounter := 123
 	saveImage(fmt.Sprintf("/tmp/%03d.png",imgcounter),dst)
-
 }
 
 //LoadImage decodes an image from a file
