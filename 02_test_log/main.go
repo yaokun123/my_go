@@ -45,6 +45,9 @@ func main() {
 	log.SetOutput(of)
 	log.Println("测试打印到文件中")
 
+	// log模块不支持DEBUG/INFO/WARNING/ERROR
+	// 第三方包logrus
+
 	//实现原理:
 	/**
 	func New(out io.Writer, prefix string, flag int) *Logger {
