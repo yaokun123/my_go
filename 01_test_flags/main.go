@@ -7,13 +7,14 @@ import (
 	"os"
 )
 
+/** cobar第三方库*/
+
 func main() {
 	// 一般简单的参数传递使用os.Args即可
 	args := os.Args
 	fmt.Println(args)
 
 	// 复杂一点的参数，例如-H -P 等需要使用flag包
-	/** cobar第三方库*/
 	var (
 		host string
 		port int

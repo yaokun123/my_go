@@ -5,6 +5,9 @@ import (
 	"os"
 )
 
+// log模块不支持DEBUG/INFO/WARNING/ERROR
+// 第三方包logrus
+
 func main() {
 
 	//使用非常简单，函数名字和用法也和fmt包很相似，但是它的输出默认带了时间戳。
@@ -50,9 +53,6 @@ func main() {
 	logger_2 := log.New(os.Stdout, "logger_2", log.Ldate|log.Lshortfile)
 	logger_1.Println("logger1的打印")
 	logger_2.Println("logger2的打印")
-
-	// log模块不支持DEBUG/INFO/WARNING/ERROR
-	// 第三方包logrus
 
 	//实现原理:
 	/**
