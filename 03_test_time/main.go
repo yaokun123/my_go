@@ -60,5 +60,7 @@ func main() {
 	duration = time.Until(time2022) // since - now
 	fmt.Printf("%T,%#v,%v\n", duration, duration, duration)
 
-	//time.ParseDuration()
+	tomDuration, err := time.ParseDuration("24h") // 一天以后
+	tom := time.Now().Add(tomDuration)
+	fmt.Printf("%T,%#v,%v\n", tom, tom, tom)
 }
