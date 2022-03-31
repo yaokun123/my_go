@@ -45,6 +45,12 @@ func main() {
 	log.SetOutput(of)
 	log.Println("测试打印到文件中")
 
+	// 如果使用多个不同的日志，模式的也是使用New创建出来的结构体
+	logger_1 := log.New(os.Stdout, "logger_1", log.Ldate|log.Lshortfile)
+	logger_2 := log.New(os.Stdout, "logger_2", log.Ldate|log.Lshortfile)
+	logger_1.Println("logger1的打印")
+	logger_2.Println("logger2的打印")
+
 	// log模块不支持DEBUG/INFO/WARNING/ERROR
 	// 第三方包logrus
 
