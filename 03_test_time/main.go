@@ -33,4 +33,32 @@ func main() {
 	05		2位数字的秒
 	*/
 	fmt.Println(currentTime.Format("2006-01-02 15:04:05"))
+
+	// 生成时间
+	year, month, day := 2022, 3, 31
+	time2022 := time.Date(year, time.Month(month), day, 0, 0, 0, 0, time.Local)
+	fmt.Printf("%T,%#v,%v\n", time2022, time2022, time2022)
+
+	time2022 = time.Unix(1648693364, 0)
+	fmt.Printf("%T,%#v,%v\n", time2022, time2022, time2022)
+
+	time2022, err := time.Parse("2006-01-02 15:04:05", "2022-03-31 10:22:44")
+	if err == nil {
+		fmt.Printf("%T,%#v,%v\n", time2022, time2022, time2022)
+	}
+
+	time2022, err = time.ParseInLocation("2006-01-02 15:04:05", "2022-03-31 10:22:44", time.Local)
+	if err == nil {
+		fmt.Printf("%T,%#v,%v\n", time2022, time2022, time2022)
+	}
+
+	// 时间差
+	duration := time.Since(time2022) // now - since
+	fmt.Printf("%T,%#v,%v\n", duration, duration, duration)
+	fmt.Println(duration.Seconds())
+
+	duration = time.Until(time2022) // since - now
+	fmt.Printf("%T,%#v,%v\n", duration, duration, duration)
+
+	//time.ParseDuration()
 }
