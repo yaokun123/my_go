@@ -17,7 +17,7 @@ type Type2 struct {
 	name string
 }
 
-func (t *Type2) Clone() Cloneable {
+func (t *Type2) Clone() Cloneable { // 浅克隆
 	tc := *t
 	return &tc
 }
