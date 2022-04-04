@@ -2,13 +2,18 @@ package _1_simplefactory
 
 import "fmt"
 
+/**
+go 语言没有构造函数一说，所以一般会定义NewXXX函数来初始化相关类。
+NewXXX 函数返回接口时就是简单工厂模式，也就是说Golang的一般推荐做法就是简单工厂。
+*/
+
 //API is interface
 type API interface {
 	Say(name string) string
 }
 
 //NewAPI return Api instance by type
-func NewAPI(t int) API {
+func NewAPI(t int) API { // 简单工厂（NewXXX 函数返回接口）
 	if t == 1 {
 		return &hiAPI{}
 	} else if t == 2 {
