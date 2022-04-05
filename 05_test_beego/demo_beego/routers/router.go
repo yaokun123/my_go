@@ -6,7 +6,7 @@ import (
 )
 
 func init() {
-	// 基础路由
+	// 1、基础路由
 	/*beego.Get("/get", func(ctx *context.Context) {
 		ctx.Output.Body([]byte("hello world"))
 	})
@@ -19,7 +19,7 @@ func init() {
 
 	// 正则路由
 
-	// 自动路由
+	// 2、固定路由
 	beego.Router("/", &controllers.MainController{})
 	beego.Router("/user", &controllers.UserController{})
 }
