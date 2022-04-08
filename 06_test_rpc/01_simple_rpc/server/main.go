@@ -25,6 +25,14 @@ func (this *World) HelloWorld2(name string, resp *string) error {
 	return nil
 }
 
+// 绑定类方法 - 3
+// 这里没有按照既定的规则来定义类方法，但是可以通过编译，因为在语法上没有任何问题
+// 会在程序运行期间报错
+func (this *World) HelloWorld3(resp *string) error {
+	*resp = "hello3 "
+	return nil
+}
+
 /**
 RPC服务端
 RPC使用了go语言特有的数据序列化gob，其他编程语言不能解析
