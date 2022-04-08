@@ -12,6 +12,8 @@ type World struct {
 }
 
 // 绑定类方法 - 1
+// 如果不按照既定的规则来定义方法，也是可以编译通过的，只是在运行期间会报错
+// 如何将报错提前到编译期？这就需要再进行封装。见server2的代码
 func (this *World) HelloWorld(name string, resp *string) error {
 	*resp = "hello " + name
 	return nil
