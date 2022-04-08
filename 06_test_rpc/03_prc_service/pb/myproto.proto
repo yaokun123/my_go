@@ -33,3 +33,10 @@ message Student{
 message People{
     int32 weight = 1;
 }
+
+
+
+// 添加一个rpc服务
+service bj38{
+    rpc Say(People) returns (Student);
+}
