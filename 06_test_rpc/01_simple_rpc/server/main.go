@@ -25,7 +25,9 @@ func (this *World) HelloWorld2(name string, resp *string) error {
 
 /**
 RPC服务端
-RPC使用了go语言特有的数据序列化gob
+RPC使用了go语言特有的数据序列化gob，其他编程语言不能解析
+可使用通用的序列化、反序列化json/protobuf
+net/jsonrpc:json版本的rpc
 */
 func main() {
 	// 1、注册RPC服务，绑定对象方法
