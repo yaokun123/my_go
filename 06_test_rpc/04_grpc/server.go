@@ -1,7 +1,7 @@
 package main
 
 import (
-	"04_grpc/pb/person"
+	person "04_grpc/pb"
 	"context"
 	"fmt"
 	"google.golang.org/grpc"

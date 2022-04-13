@@ -5,7 +5,7 @@ syntax = "proto3";
 package pb;
 
 // .这个是项目的绝对路径,不加的话因为找不到路径所以报了上面的错
-option go_package =".";
+option go_package ="./;pb";
 
 // 定义枚举类型
 enum Week{

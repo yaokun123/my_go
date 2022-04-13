@@ -1,20 +1,19 @@
 package main
 
 import (
-	"04_grpc/pb/person"
+	person "04_grpc/pb"
 	"context"
 	"fmt"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/credentials/insecure"
 	"log"
 )
 
 func main() {
 	// 1、连接rpc服务
 	// WithInsecure	表示以安全的方式操作
-	// grpcConn,err := grpc.Dial("127.0.0.1:8800", grpc.WithInsecure())
+	grpcConn, err := grpc.Dial("127.0.0.1:8800", grpc.WithInsecure())
 	// grpcConn,err := grpc.Dial("127.0.0.1:8800", grpc.WithTransportCredentials(insecure.NewCredentials()))
-	grpcConn, err := grpc.Dial("127.0.0.1:8800")
+	// grpcConn, err := grpc.Dial("127.0.0.1:8800")
 	if err != nil {
 		log.Fatal("grpc.Dial error")
 	}

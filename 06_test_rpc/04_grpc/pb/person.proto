@@ -1,6 +1,6 @@
 syntax = "proto3";
 package pb;
-option go_package ="./person";
+option go_package ="./;pb";
 
 message Teacher{
     int32 age = 1;

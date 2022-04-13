@@ -48,7 +48,10 @@ func main() {
 	}
 
 	// 4、注册grpc服务到consul上
-	consulClient.Agent().ServiceRegister(&reg)
+	err = consulClient.Agent().ServiceRegister(&reg)
+	if err != nil {
+		log.Fatal("consul error")
+	}
 
 	// 注销服务
 	// consulClient.Agent().ServiceDeregister("bj38")
