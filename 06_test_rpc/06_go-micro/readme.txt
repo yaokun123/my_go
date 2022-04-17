@@ -91,3 +91,7 @@ make proto
           service.Name("helloworld"),
           service.Version("latest"),
       )
+
+
+报错解决：
+go get golang.org/x/sys
