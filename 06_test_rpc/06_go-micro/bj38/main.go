@@ -3,11 +3,13 @@ package main
 import (
 	"bj38/handler"
 	pb "bj38/proto"
+	//"github.com/asim/go-micro/plugins/transport/grpc/v3"
 
 	//"github.com/micro/micro/v3/service"
 	//"github.com/micro/micro/v3/service/logger"
 	service "github.com/asim/go-micro/v3"
 	"github.com/asim/go-micro/v3/logger"
+	"github.com/asim/go-micro/plugins/server/grpc/v3"
 )
 
 func main() {
@@ -18,9 +20,12 @@ func main() {
 	)*/
 
 	// asim/go-micro 创建服务
+	grpcServer := grpc.NewServer()
 	srv := service.NewService(
 		service.Name("bj38"),
 		service.Version("latest"),
+		//service.Transport(grpc.NewTransport()),
+		service.Server(grpcServer),
 		)
 
 	// Register handler
